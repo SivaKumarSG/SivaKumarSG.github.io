@@ -3,409 +3,464 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SivaKumar — Power Systems Analyst</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<title>SivaKumar — Energy Systems & Market Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #0d0f14; --bg2: #12141b;
-    --gold: #c8a84b; --gold-dim: #896f2e;
-    --text: #e9e6df; --muted: #787570;
-    --line: rgba(200,168,75,0.15);
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --sans: 'DM Sans', sans-serif;
-  }
+  *, *::before, *::after { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.75; overflow-x: hidden; }
+  body {
+    margin: 0;
+    background: linear-gradient(180deg, #0c1020 0%, #121a30 52%, #0f1628 100%);
+    color: #f4f1e8;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
 
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; justify-content: space-between; align-items: center; padding: 1.3rem 5rem; border-bottom: 1px solid var(--line); background: rgba(13,15,20,0.92); backdrop-filter: blur(18px); }
-  .nav-logo { font-family: var(--serif); font-size: 1.35rem; letter-spacing: 0.28em; color: var(--gold); text-transform: uppercase; }
-  .nav-links { display: flex; gap: 2rem; }
-  .nav-links a { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  :root {
+    --bg: #0c1020;
+    --bg-soft: rgba(255,255,255,0.03);
+    --panel: rgba(255,255,255,0.04);
+    --panel-strong: rgba(255,255,255,0.06);
+    --line: rgba(255,255,255,0.08);
+    --gold: #f2c14e;
+    --gold-soft: rgba(242,193,78,0.14);
+    --text: #f4f1e8;
+    --muted: #adb3c2;
+    --serif: 'Cormorant Garamond', serif;
+    --sans: 'Inter', sans-serif;
+    --max: 1180px;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .container {
+    width: min(var(--max), calc(100% - 48px));
+    margin: 0 auto;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(16px);
+    background: rgba(12,16,32,0.72);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    width: min(var(--max), calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
   .nav-links a:hover { color: var(--gold); }
 
-  /* HERO */
-  #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 360px; gap: 4rem; align-items: center; padding: 8rem 5rem 5rem; position: relative; }
-  #hero::before { content: ''; position: absolute; top: 15%; left: -8%; width: 55vw; height: 55vw; background: radial-gradient(circle, rgba(200,168,75,0.05) 0%, transparent 65%); pointer-events: none; }
-  .hero-eyebrow { font-size: 0.66rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
-  h1 { font-family: var(--serif); font-size: clamp(3.8rem, 7vw, 6rem); font-weight: 300; line-height: 1.0; margin-bottom: 1.6rem; opacity: 0; animation: fadeUp 0.9s 0.35s forwards; }
-  h1 em { font-style: italic; color: var(--gold); }
-  .hero-sub { font-size: 1rem; color: var(--muted); max-width: 500px; line-height: 1.85; margin-bottom: 2.8rem; opacity: 0; animation: fadeUp 0.9s 0.55s forwards; }
-  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; opacity: 0; animation: fadeUp 0.9s 0.75s forwards; }
-  .tag { font-size: 0.63rem; letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid var(--line); color: var(--muted); padding: 0.38rem 0.82rem; border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
-  .tag:hover { border-color: var(--gold-dim); color: var(--gold); }
-  .hero-card { border: 1px solid var(--line); padding: 2.4rem; background: rgba(200,168,75,0.02); opacity: 0; animation: fadeUp 0.9s 0.9s forwards; }
-  .card-label { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1.4rem; }
-  .card-contact { display: flex; flex-direction: column; gap: 0.8rem; }
-  .crow { display: flex; align-items: flex-start; gap: 0.75rem; }
-  .cicon { width: 15px; min-width: 15px; color: var(--gold-dim); font-size: 0.78rem; margin-top: 0.18rem; }
-  .crow a, .crow span { font-size: 0.8rem; color: var(--muted); text-decoration: none; line-height: 1.4; word-break: break-all; transition: color 0.2s; }
-  .crow a:hover { color: var(--gold); }
-  .card-divider { border: none; border-top: 1px solid var(--line); margin: 1.4rem 0; }
-  .card-avail { font-size: 0.7rem; color: var(--muted); line-height: 1.65; }
-  .avail-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #5a9e6f; margin-right: 0.45rem; vertical-align: middle; }
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 96px 0 72px;
+  }
 
-  /* SECTIONS */
-  section { padding: 7rem 5rem; position: relative; }
-  section + section { border-top: 1px solid var(--line); }
-  .section-label { font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 2.8rem; }
-  h2 { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300; line-height: 1.15; margin-bottom: 1.6rem; }
-  h2 em { font-style: italic; color: var(--gold); }
-  p { color: #b3b0a8; font-size: 0.94rem; max-width: 620px; }
-  p + p { margin-top: 1rem; }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: auto auto 10% -10%;
+    width: 52vw;
+    height: 52vw;
+    background: radial-gradient(circle, rgba(242,193,78,0.16) 0%, rgba(242,193,78,0.05) 28%, transparent 68%);
+    pointer-events: none;
+    filter: blur(8px);
+  }
 
-  /* ABOUT */
-  #about .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6rem; align-items: start; margin-top: 1rem; }
-  .stat-strip { display: flex; gap: 2.5rem; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 1.8rem; margin-top: 2.2rem; }
-  .stat-num { font-family: var(--serif); font-size: 2.4rem; color: var(--gold); font-weight: 300; line-height: 1; }
-  .stat-lbl { font-size: 0.63rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
-  .pull-quote { font-family: var(--serif); font-size: 1.38rem; font-weight: 300; line-height: 1.65; color: var(--text); font-style: italic; max-width: none; border-left: 2px solid var(--gold-dim); padding-left: 1.5rem; margin-bottom: 2rem; }
+  .hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.4fr 0.9fr;
+    gap: 40px;
+    align-items: end;
+  }
 
-  /* connect strip inside about */
-  .connect-strip { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
-  .connect-text h3 { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; margin-bottom: 0.5rem; }
-  .connect-text h3 em { font-style: italic; color: var(--gold); }
-  .connect-text p { font-size: 0.88rem; color: var(--muted); max-width: 480px; }
-  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn { display: inline-block; font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; padding: 0.9rem 2.2rem; border: 1px solid var(--gold); color: var(--gold); transition: background 0.22s, color 0.22s; border-radius: 2px; white-space: nowrap; }
-  .btn:hover { background: var(--gold); color: var(--bg); }
-  .btn.ghost { border-color: var(--line); color: var(--muted); }
-  .btn.ghost:hover { border-color: var(--gold-dim); color: var(--gold); background: transparent; }
+  .eyebrow {
+    margin: 0 0 24px;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
 
-  /* EXPERTISE */
-  #expertise .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); border: 1px solid var(--line); margin-top: 3rem; }
-  .pillar { padding: 2.4rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); position: relative; overflow: hidden; transition: background 0.3s; }
-  .pillar:hover { background: rgba(200,168,75,0.04); }
-  .pillar::after { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s ease; }
-  .pillar:hover::after { width: 100%; }
-  .pnum { font-family: var(--serif); font-size: 1.8rem; color: rgba(200,168,75,0.14); line-height: 1; margin-bottom: 1.1rem; }
-  .pillar h3 { font-family: var(--serif); font-size: 1.12rem; font-weight: 400; color: var(--text); margin-bottom: 0.7rem; }
-  .pillar p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; max-width: none; }
-  .tools-row { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1rem; }
-  .tool-chip { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid rgba(200,168,75,0.18); color: var(--gold-dim); padding: 0.22rem 0.55rem; border-radius: 2px; }
+  h1 {
+    margin: 0;
+    max-width: 760px;
+    font-family: var(--serif);
+    font-size: clamp(4rem, 8vw, 6.6rem);
+    line-height: 0.92;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
 
-  /* CAREER + CONSULTING — two columns */
-  #career .section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; margin-top: 3rem; }
-  #career .col-head { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 2rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--line); }
+  h1 em, h2 em { color: var(--gold); font-style: italic; }
 
-  /* timeline (left col) */
-  .tl-item { padding: 2rem 0; border-bottom: 1px solid var(--line); }
-  .tl-item:last-child { border-bottom: none; }
-  .tl-date { font-size: 0.68rem; letter-spacing: 0.08em; color: var(--gold-dim); margin-bottom: 0.3rem; }
-  .tl-org { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
-  .tl-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 400; color: var(--text); margin-bottom: 0.6rem; line-height: 1.2; }
-  .tl-bullets { display: flex; flex-direction: column; gap: 0.35rem; }
-  .tl-bullet { font-size: 0.81rem; color: var(--muted); padding-left: 1rem; position: relative; line-height: 1.6; }
-  .tl-bullet::before { content: '-'; position: absolute; left: 0; color: var(--gold-dim); }
+  .hero-sub {
+    max-width: 730px;
+    margin: 28px 0 0;
+    font-size: 1.08rem;
+    color: var(--muted);
+  }
 
-  /* consulting (right col) */
-  .consult-intro { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
-  .consult-box { border: 1px solid var(--line); padding: 2rem; background: rgba(200,168,75,0.02); }
-  .consult-box-label { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1.2rem; }
-  .consult-services { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .svc { font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--line); color: var(--muted); padding: 0.38rem 0.8rem; border-radius: 2px; transition: border-color 0.2s, color 0.2s; }
-  .svc:hover { border-color: var(--gold-dim); color: var(--gold); }
-  .consult-note { font-size: 0.78rem; color: var(--muted); margin-top: 1.5rem; line-height: 1.7; font-style: italic; border-left: 2px solid var(--line); padding-left: 1rem; }
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+  }
 
-  /* VALUES + PHILOSOPHY */
-  #values { background: var(--bg2); }
-  #values .val-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-bottom: 4rem; align-items: start; }
-  #values .val-intro p { max-width: none; }
+  .tag {
+    padding: 10px 14px;
+    border: 1px solid rgba(242,193,78,0.18);
+    background: rgba(255,255,255,0.02);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #d7dbe5;
+  }
 
-  /* philosophy pillars inside values intro right col */
-  .phil-pillars { display: flex; flex-direction: column; gap: 1.8rem; }
-  .phil-item { border-left: 1px solid var(--line); padding-left: 1.4rem; transition: border-color 0.3s; }
-  .phil-item:hover { border-color: var(--gold-dim); }
-  .phil-title { font-family: var(--serif); font-size: 1.05rem; color: var(--text); margin-bottom: 0.35rem; }
-  .phil-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+  .hero-card {
+    padding: 28px;
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+    border-radius: 24px;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.22);
+  }
 
-  /* value cards grid */
-  .val-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); border: 1px solid var(--line); }
-  .val-item { padding: 2.2rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background 0.3s; }
-  .val-item:hover { background: rgba(200,168,75,0.03); }
-  .val-num { font-family: var(--serif); font-size: 1.5rem; color: rgba(200,168,75,0.12); line-height: 1; margin-bottom: 0.9rem; }
-  .val-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--text); margin-bottom: 0.55rem; }
-  .val-desc { font-size: 0.81rem; color: var(--muted); line-height: 1.7; }
-  .val-principle { font-size: 0.67rem; letter-spacing: 0.1em; color: var(--gold-dim); margin-top: 0.9rem; font-style: italic; }
+  .mini-label,
+  .section-label {
+    margin: 0 0 18px;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+  }
 
-  /* FOOTER */
-  footer { border-top: 1px solid var(--line); padding: 2rem 5rem; display: flex; justify-content: space-between; align-items: center; }
-  footer span { font-size: 0.67rem; color: var(--muted); letter-spacing: 0.08em; }
+  .contact-stack { display: grid; gap: 14px; }
+  .contact-item { color: var(--muted); font-size: 0.96rem; }
+  .contact-item strong { color: var(--text); display: block; margin-bottom: 2px; font-weight: 600; }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-  .reveal { opacity: 1; transform: none; }
-  body.js-ready .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
-  body.js-ready .reveal.visible { opacity: 1; transform: none; }
+  .statement {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: #d3d7e0;
+    font-size: 0.95rem;
+  }
+
+  section { padding: 72px 0; }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4vw, 4.1rem);
+    font-weight: 400;
+    line-height: 0.98;
+  }
+
+  .section-intro {
+    max-width: 720px;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .problem-grid,
+  .expertise-grid,
+  .thought-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .card {
+    padding: 24px;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+  }
+
+  .problem-card {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: rgba(242,193,78,0.28);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .card h3 {
+    margin: 0 0 12px;
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    font-weight: 500;
+  }
+
+  .card p,
+  .about-copy p,
+  .career-layout p,
+  .direction-copy p { color: var(--muted); }
+
+  .about-layout,
+  .career-layout,
+  .direction-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 28px;
+  }
+
+  .about-copy,
+  .career-main,
+  .direction-copy { padding-right: 8px; }
+
+  .about-copy p,
+  .career-main p,
+  .direction-copy p { margin: 0 0 18px; font-size: 1rem; }
+
+  .pull-quote {
+    padding: 28px;
+    border-radius: 24px;
+    border: 1px solid rgba(242,193,78,0.18);
+    background: linear-gradient(180deg, rgba(242,193,78,0.08), rgba(255,255,255,0.03));
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .quote-note {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-family: var(--sans);
+  }
+
+  .expertise-card { min-height: 240px; }
+  .expertise-card p { margin: 0; }
+
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .chip {
+    padding: 8px 11px;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--line);
+    color: #d7dbe5;
+  }
+
+  .career-main ul,
+  .direction-copy ul {
+    margin: 0 0 20px 20px;
+    color: #dfe3eb;
+  }
+
+  .career-main li,
+  .direction-copy li { margin-bottom: 10px; }
+
+  .side-panel {
+    padding: 24px;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+  }
+
+  .side-panel h3 {
+    margin: 0 0 16px;
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  .metric {
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .metric:first-of-type { border-top: 0; padding-top: 0; }
+
+  .metric strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .metric span { color: var(--muted); font-size: 0.92rem; }
+
+  .thought-card h4 {
+    margin: 0 0 12px;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: var(--text);
+  }
+
+  .thought-card p { margin: 0; }
+
+  footer {
+    padding: 34px 0 60px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+  }
 
   @media (max-width: 960px) {
-    nav { padding: 1.2rem 1.5rem; }
+    .hero-grid,
+    .section-head,
+    .about-layout,
+    .career-layout,
+    .direction-layout,
+    .problem-grid,
+    .expertise-grid,
+    .thought-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nav-inner { min-height: auto; padding: 20px 0; align-items: flex-start; }
+    .nav-links { gap: 14px; }
+    .nav-logo { font-size: 1.8rem; }
+    .hero { padding-top: 72px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 640px) {
+    .container, .nav-inner { width: min(var(--max), calc(100% - 28px)); }
+    h1 { font-size: 3.4rem; }
+    h2 { font-size: 2.4rem; }
+    .hero-card, .card, .side-panel, .pull-quote { padding: 20px; border-radius: 20px; }
     .nav-links { display: none; }
-    #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
-    section { padding: 5rem 1.5rem; }
-    #about .about-grid,
-    #career .section-inner,
-    #values .val-intro { grid-template-columns: 1fr; gap: 2.5rem; }
-    .connect-strip { flex-direction: column; align-items: flex-start; }
-    footer { flex-direction: column; gap: 0.8rem; text-align: center; padding: 1.5rem; }
   }
 </style>
 </head>
 <body>
-
-<nav>
-  <div class="nav-logo">SivaKumar</div>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#expertise">Expertise</a>
-    <a href="#career">Career &amp; Consulting</a>
-    <a href="#values">Values</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div>
-    <p class="hero-eyebrow">Energy Solutions & Project Engineer &middot; New Zealand</p>
-    <h1>Systems thinking.<br>Real&#8209;world<br><em>delivery.</em></h1>
-    <p class="hero-sub">I work at the intersection of network engineering, distributed energy, and strategic decision-making &mdash; helping utilities and industry navigate the energy transition with rigour, pragmatism, and long-term clarity.</p>
-    <div class="hero-tags">
-      <span class="tag">Supporting Network Planning</span>
-      <span class="tag">DER &amp; Solar</span>
-      <span class="tag">BESS &amp; Storage</span>
-      <span class="tag">EV &amp; Electrification</span>
-      <span class="tag">Energy Analytics</span>
-      <span class="tag">EECA Programmes</span>
-      <span class="tag">Independent Consulting</span>
-    </div>
-  </div>
-  <div class="hero-card">
-    <div class="card-label">Contact</div>
-    <div class="card-contact">
-      <div class="crow"><span class="cicon">&#9993;</span><a href="mailto:sg.sivakumar@outlook.com">sg.sivakumar@outlook.com</a></div>
-      <div class="crow"><span class="cicon">&#9990;</span><span>+64 020 4024 6165</span></div>
-      <div class="crow"><span class="cicon">&#9673;</span><span>South Canterbury, New Zealand</span></div>
-      <div class="crow"><span class="cicon">in</span><a href="https://linkedin.com/in/sivakumar-sg-3097/" target="_blank">linkedin.com/in/sivakumar-sg-3097</a></div>
-    </div>
-    <hr class="card-divider">
-    <div class="card-avail"><span class="avail-dot"></span>Selectively open to the right opportunity. Always interested in conversations with people who understand where the energy sector is heading.</div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label reveal">About</div>
-  <div class="about-grid">
-    <div class="reveal">
-      <h2>Engineer by training.<br><em>Systems thinker</em> by disposition.</h2>
-      <p>I&rsquo;m an Energy &amp; Decarbonisation Engineer at Alpine Energy, one of New Zealand&rsquo;s regional electricity distribution businesses, based in Timaru, South Canterbury. My work spans DER connection assessments, transformer hosting capacity analysis, network forecasting, and an EECA-funded industrial electrification programme engaging large energy users across the network.</p>
-      <p>Before Alpine Energy, I led distributed solar engineering at SolarZero Ltd across New Zealand, Fiji, and Sri Lanka &mdash; managing cross-border teams and building the technical foundations for large-scale residential solar deployment.</p>
-      <p>I also run an independent energy consulting practice, working with organisations on energy strategy, DER assessment, and electrification pathways.</p>
-      <div class="stat-strip">
-        <div><div class="stat-num">4+</div><div class="stat-lbl">Years at Distribution Level</div></div>
-        <div><div class="stat-num">3</div><div class="stat-lbl">Countries &mdash; Solar Delivery</div></div>
-        <div><div class="stat-num">7</div><div class="stat-lbl">GXPs Modelled</div></div>
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">SivaKumar</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#focus">Focus</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#current-work">Current Work</a>
+        <a href="#direction">Direction</a>
       </div>
     </div>
-    <div class="reveal">
-      <p class="pull-quote">&ldquo;The most valuable people at the network edge understand both what connects to it and what the grid needs from those connections.&rdquo;</p>
-      <p>My edge is dual fluency &mdash; I understand the regulated network world from the inside, and the commercial DER and solar space from hands-on delivery. I hold a BE in Mechancial Engineering and Master's in Renewable Energy Engineering and bring strong analytical capability across Power BI and Excel.</p>
-      <p style="margin-top:1rem;">What distinguishes my approach is not just technical depth, but the ability to operate at the boundary between strategic intent and operational reality &mdash; designing solutions that survive contact with the real world.</p>
-    </div>
-  </div>
+  </nav>
 
-  <!-- CONNECT — embedded in About -->
-  <div class="connect-strip reveal">
-    <div class="connect-text">
-      <h3>Selectively open.<br><em>Always</em> interested in the right conversation.</h3>
-      <p>Not actively seeking &mdash; but I believe in building long-term relationships with people who understand where the energy sector is heading. If you&rsquo;re working on something worth a conversation, I&rsquo;m open to it.</p>
-    </div>
-    <div class="cta-row">
-      <a href="mailto:sg.sivakumar@outlook.com" class="btn">Email Me</a>
-      <a href="https://linkedin.com/in/sivakumar-sg-3097/" target="_blank" class="btn ghost">LinkedIn</a>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERTISE -->
-<section id="expertise">
-  <div class="section-label reveal">Expertise</div>
-  <h2 class="reveal">Five disciplines.<br><em>One through-line.</em></h2>
-  <div class="grid reveal">
-    <div class="pillar">
-      <div class="pnum">01</div>
-      <h3>Network Planning &amp; Engineering</h3>
-      <p>DER connection assessments, transformer hosting capacity, zone substation optimisation, and multi-GXP solar uptake forecasting using Gompertz diffusion modelling across seven grid exit points.</p>
-      <div class="tools-row"><span class="tool-chip">Hosting Capacity</span><span class="tool-chip">DER Integration</span><span class="tool-chip">Load Forecasting</span></div>
-    </div>
-    <div class="pillar">
-      <div class="pnum">02</div>
-      <h3>DER &middot; Solar &middot; BESS &middot; Electrification</h3>
-      <p>Grid-connected PV, BESS sizing and optimisation, export-limit analysis, industrial electrification assessments, and coal-to-electric conversion feasibility for large energy users.</p>
-      <div class="tools-row"><span class="tool-chip">BESS Sizing</span><span class="tool-chip">Export Limits</span><span class="tool-chip">Industrial EV</span></div>
-    </div>
-    <div class="pillar">
-      <div class="pnum">03</div>
-      <h3>Energy Analytics &amp; Modelling</h3>
-      <p>Power BI dashboards, Python-based network models, Excel sensitivity analysis, and demand profiling from metering data. Models that support real decisions, not just visualisations.</p>
-      <div class="tools-row"><span class="tool-chip">Power BI</span><span class="tool-chip">Python</span><span class="tool-chip">Excel Modelling</span></div>
-    </div>
-    <div class="pillar">
-      <div class="pnum">04</div>
-      <h3>EECA Programme Delivery</h3>
-      <p>Running an EECA-funded industrial electrification programme across South Canterbury &mdash; engaging large energy users, coordinating industry bodies, and delivering actionable assessments with measurable outcomes.</p>
-      <div class="tools-row"><span class="tool-chip">Industrial Engagement</span><span class="tool-chip">EECA Funded</span><span class="tool-chip">Feasibility</span></div>
-    </div>
-    <div class="pillar" style="border-right:none;">
-      <div class="pnum">05</div>
-      <h3>Leadership &amp; Stakeholder Engagement</h3>
-      <p>Cross-sector relationship management across EECA, industry bodies, councils, and C-suite audiences. Technical credibility with commercial fluency. I can work the room and read the room.</p>
-      <div class="tools-row"><span class="tool-chip">Industry Bodies</span><span class="tool-chip">C-Suite Advisory</span><span class="tool-chip">Programme Governance</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- CAREER + CONSULTING -->
-<section id="career">
-  <div class="section-label reveal">Career &amp; Consulting</div>
-  <h2 class="reveal">Where I&rsquo;ve built this &mdash;<br>and how I <em>apply it.</em></h2>
-  <div class="section-inner">
-
-    <!-- LEFT: Timeline -->
-    <div class="reveal">
-      <div class="col-head">Career History</div>
-
-      <div class="tl-item">
-        <div class="tl-date">2021 &ndash; Present</div>
-        <div class="tl-org">Alpine Energy &middot; Timaru, New Zealand</div>
-        <div class="tl-title">Energy &amp; Decarbonisation Engineer</div>
-        <div class="tl-bullets">
-          <div class="tl-bullet">Lead engineer on an EECA-funded industrial electrification programme across South Canterbury, engaging large energy users and regional industry bodies</div>
-          <div class="tl-bullet">Built the company&rsquo;s solar DG uptake forecast model (Gompertz diffusion) with sensitivity multipliers and per-GXP outputs across seven grid exit points</div>
-          <div class="tl-bullet">Transformer hosting capacity analysis and zone substation capacity optimisation informing network investment planning</div>
-          <div class="tl-bullet">DER connection assessments, export-limit analysis, and DNSP submission support for commercial solar and BESS projects</div>
-          <div class="tl-bullet">Power BI dashboards and Python models supporting operational analytics and network forecasting</div>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Energy Systems · DER · Network Strategy · Markets</p>
+          <h1>Understanding the system.<br>Building better <em>energy decisions.</em></h1>
+          <p class="hero-sub">
+            I’m an Energy &amp; Decarbonisation Engineer at Alpine Energy focused on how electricity networks, distributed energy resources, electrification, and market signals reshape the future grid. My work sits between technical analysis and strategic judgement — building tools, models, and perspectives that help the right decisions get made.
+          </p>
+          <div class="hero-tags">
+            <span class="tag">Electricity Markets</span>
+            <span class="tag">DER &amp; Flexibility</span>
+            <span class="tag">Network Planning</span>
+            <span class="tag">Electrification</span>
+            <span class="tag">Demand Strategy</span>
+            <span class="tag">Decision Tools</span>
+          </div>
         </div>
-      </div>
 
-      <div class="tl-item">
-        <div class="tl-date">2019 &ndash; 2021</div>
-        <div class="tl-org">SolarZero Ltd &middot; New Zealand</div>
-        <div class="tl-title">Engineering Manager</div>
-        <div class="tl-bullets">
-          <div class="tl-bullet">Led distributed solar engineering teams across New Zealand, Fiji, and Sri Lanka for one of NZ&rsquo;s largest residential solar programmes</div>
-          <div class="tl-bullet">Oversaw design standards, technical delivery processes, and cross-border team operations</div>
-          <div class="tl-bullet">Grid-connected solar PV and BESS design, network export-limit analysis, and industrial demand profiling</div>
-          <div class="tl-bullet">Technical inputs to software product teams based on system performance data and energy modelling</div>
+        <aside class="hero-card">
+          <p class="mini-label">Profile</p>
+          <div class="contact-stack">
+            <div class="contact-item"><strong>Role</strong>Energy &amp; Decarbonisation Engineer, Alpine Energy</div>
+            <div class="contact-item"><strong>Based</strong>South Canterbury, New Zealand</div>
+            <div class="contact-item"><strong>Email</strong>sg.sivakumar@outlook.com</div>
+            <div class="contact-item"><strong>LinkedIn</strong>linkedin.com/in/sivakumar-sg-3097</div>
+          </div>
+          <div class="statement">
+            I’m especially interested in the part of the energy transition where network constraints, DER growth, flexibility, and market design begin to collide.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-label">About</p>
+            <h2>More than an engineer.<br><em>A systems thinker in motion.</em></h2>
+          </div>
+          <p class="section-intro">
+            This is not meant to read like a CV. It is a clearer reflection of how I think, what I am becoming, and where I believe I can create the most value in the energy sector.
+          </p>
         </div>
-      </div>
-    </div>
 
-    <!-- RIGHT: Consulting -->
-    <div class="reveal">
-      <div class="col-head">Independent Consulting &middot; 2021 &ndash; Present</div>
-      <p class="consult-intro">Alongside my full-time role at Alpine Energy, I take on select consulting engagements where I can add genuine value &mdash; at the intersection of technical rigour and commercial strategy. I prioritise projects where my network-side and DER experience creates a real edge.</p>
-      <div class="consult-box">
-        <div class="consult-box-label">Services</div>
-        <div class="consult-services">
-          <span class="svc">DER Feasibility &amp; Assessment</span>
-          <span class="svc">Network Hosting Capacity</span>
-          <span class="svc">BESS Sizing &amp; Optimisation</span>
-          <span class="svc">Electrification Strategy</span>
-          <span class="svc">Energy Analytics &amp; Modelling</span>
-          <span class="svc">Solar Technical Advisory</span>
-          <span class="svc">DNSP Submission Support</span>
-          <span class="svc">Financial Modelling (NPV / IRR)</span>
-          <span class="svc">Industrial Load Profiling</span>
-        </div>
-        <p class="consult-note">I do not approach consulting as a side hustle &mdash; I approach it as a discipline. Every engagement receives the same rigour as my full-time work.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- VALUES + PHILOSOPHY -->
-<section id="values">
-  <div class="section-label reveal">Values &amp; How I Think</div>
-
-  <div class="val-intro">
-    <div class="reveal">
-      <h2>A foundation for decisions<br>in <em>complex systems.</em></h2>
-      <p>Energy and infrastructure challenges do not exist in isolation. Technical capacity, demand behaviour, capital constraints, regulation, and environmental limits form a tightly coupled system. Optimising one component without understanding its interactions often shifts risk rather than reducing it.</p>
-      <p style="margin-top:1rem;">My approach begins with mapping system boundaries, constraints, and points of fragility &mdash; before proposing any intervention. This ensures solutions improve overall system performance, not just local metrics.</p>
-    </div>
-    <div class="phil-pillars reveal">
-      <div class="phil-item">
-        <div class="phil-title">Pragmatism Without Cynicism</div>
-        <div class="phil-desc">I prioritise feasible pathways over ideal end-states. Pragmatism does not dilute ambition &mdash; it makes ambition durable.</div>
-      </div>
-      <div class="phil-item">
-        <div class="phil-title">Strategy That Anticipates Execution</div>
-        <div class="phil-desc">Many strategies fail not because they&rsquo;re wrong, but because they underestimate execution friction. I operate at the boundary between strategic intent and operational reality.</div>
-      </div>
-      <div class="phil-item">
-        <div class="phil-title">AI as a Force Multiplier</div>
-        <div class="phil-desc">I apply AI where it genuinely improves insight quality and decision-making &mdash; not as novelty, but as an extension of systems thinking and judgement.</div>
-      </div>
-      <div class="phil-item">
-        <div class="phil-title">Architect-Style Leadership</div>
-        <div class="phil-desc">I lead as a designer of systems rather than a controller of tasks &mdash; creating frameworks that reduce friction and empower others to operate without constant oversight.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="val-grid reveal">
-    <div class="val-item">
-      <div class="val-title">Reality Over Narrative</div>
-      <div class="val-desc">Decisions should be grounded in how systems actually behave, not how we wish they behaved. Clear understanding of constraints is a strength, not a weakness.</div>
-      <div class="val-principle">Face reality early to avoid paying for it later.</div>
-    </div>
-    <div class="val-item">
-      <div class="val-title">Long-Term Value Over Short-Term Optics</div>
-      <div class="val-desc">Energy and infrastructure investments demand patience. I favour decisions that build lasting value, even when their benefits are not immediately visible.</div>
-      <div class="val-principle">Optimise for longevity, not applause.</div>
-    </div>
-    <div class="val-item">
-      <div class="val-title">Pragmatism Without Cynicism</div>
-      <div class="val-desc">Pragmatism does not mean settling for less &mdash; it means choosing pathways that survive contact with reality. Ambition must be matched with feasibility to endure.</div>
-      <div class="val-principle">Ambition must be matched with feasibility.</div>
-    </div>
-    <div class="val-item">
-      <div class="val-title">Systems Before Silos</div>
-      <div class="val-desc">No part of an energy system exists in isolation. I resist siloed optimisation and always design with full-system performance in mind.</div>
-      <div class="val-principle">Improve the whole, not just the part.</div>
-    </div>
-    <div class="val-item">
-      <div class="val-title">Accountability Through Clarity</div>
-      <div class="val-desc">Clear roles, clear metrics, and clear ownership create trust and momentum. Ambiguity slows progress and quietly erodes confidence.</div>
-      <div class="val-principle">Ambiguity is a tax on progress.</div>
-    </div>
-    <div class="val-item" style="border-right:none;">
-      <div class="val-title">Resilience Over Fragility</div>
-      <div class="val-desc">Systems should perform acceptably under stress, not perfectly under ideal conditions. I design for the difficult day, not the easy one.</div>
-      <div class="val-principle">Design for the worst day, not the best case.</div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <span>SivaKumar &middot; Energy &amp; Decarbonisation Engineer &middot; New Zealand</span>
-  <span>sg.sivakumar@outlook.com &middot; +64 020 4024 6165</span>
-</footer>
-
-<script>
-  document.body.classList.add('js-ready');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 70);
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
-
-</body>
-</html>
+        <div class="about-layout">
+          <div class="about-copy">
+            <p>
+              I started from engineering execution, but the deeper I moved into the energy sector, the more I was drawn to the system behind the work — how networks respond to distributed energy, how electrification changes load behaviour, how flexibility might defer capital, and how technical decisions are increasingly shaped by economics and incentives.
+            </p>
+            <p>
+              At Alpine
